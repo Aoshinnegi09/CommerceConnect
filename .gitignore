@@ -1,0 +1,30 @@
+# Compiled class files
+**/target/
+
+# Maven
+.mvn/
+!/.mvn/wrapper/maven-wrapper.properties
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.class
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Docker outputs
+*.tar
+
+# Node / frontend (if added later)
+node_modules/
