@@ -29,6 +29,9 @@ public class Inventory {
     @Column(name = "warehouse_location")
     private String warehouseLocation;
 
+    @Version
+    private Long version;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

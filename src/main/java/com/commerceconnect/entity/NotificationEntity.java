@@ -26,8 +26,13 @@ public class NotificationEntity {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "notification_type", nullable = false)
-    private String notificationType;
+    private NotificationType notificationType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "notification_status", nullable = false)
+    private NotificationStatus notificationStatus = NotificationStatus.QUEUED;
 
     @Column(name = "is_read", nullable = false)
     private boolean read = false;

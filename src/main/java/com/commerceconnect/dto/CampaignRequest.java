@@ -1,10 +1,12 @@
 package com.commerceconnect.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public record CampaignRequest(
-        String name,
+        @NotBlank String name,
         String description,
-        String campaignType,
-        String status,
+        @NotBlank String campaignType,
+        @NotBlank String status,
         String startDate,
         String endDate
 ) {}
