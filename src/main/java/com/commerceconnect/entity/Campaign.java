@@ -25,8 +25,9 @@ public class Campaign {
     @Column(name = "campaign_type", nullable = false)
     private String campaignType;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status = "DRAFT";
+    private CampaignStatus status = CampaignStatus.DRAFT;
 
     @Column(name = "start_date")
     private LocalDateTime startDate;

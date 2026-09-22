@@ -30,6 +30,9 @@ public class Promotion {
     @Column(name = "discount_value", nullable = false)
     private BigDecimal discountValue;
 
+    @Column(name = "max_discount_amount")
+    private BigDecimal maxDiscountAmount;
+
     @Column(name = "valid_from")
     private LocalDateTime validFrom;
 

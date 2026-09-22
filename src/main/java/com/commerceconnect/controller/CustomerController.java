@@ -1,11 +1,12 @@
 package com.commerceconnect.controller;
 
 import com.commerceconnect.dto.CustomerRequest;
-import com.commerceconnect.entity.Customer;
+import com.commerceconnect.dto.CustomerResponse;
 import com.commerceconnect.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,14 +20,15 @@ public class CustomerController {
 
     @PostMapping("/customers")
     @PreAuthorize("hasRole('ADMIN') or hasRole('CUSTOMER')")
-    public ResponseEntity<Customer> createCustomer(@RequestParam Long userId,
-                                                  @Valid @RequestBody CustomerRequest request) {
-        return ResponseEntity.ok(customerService.createForUser(userId, request));
+    public ResponseEntity<CustomerResponse> createCustomer(@RequestParam(required = false) Long userId,
+                                                           @Valid @RequestBody CustomerRequest request,
+                                                           Authentication authentication) {
+        return ResponseEntity.ok(customerService.createForUser(userId, request, authentication.getName()));
     }
 
     @GetMapping("/customers/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('CUSTOMER')")
-    public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
-        return ResponseEntity.ok(customerService.getById(id));
+    public ResponseEntity<CustomerResponse> getCustomer(@PathVariable Long id, Authentication authentication) {
+        return ResponseEntity.ok(customerService.getByIdAuthorized(id, authentication.getName()));
     }
 }
